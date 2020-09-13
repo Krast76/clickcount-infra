@@ -5,6 +5,15 @@ resource "gitlab_project_variable" "project" {
   protected         = true
   environment_scope = "*"
 }
+
+resource "gitlab_project_variable" "region" {
+  project           = var.gitlab_project_id
+  key               = "REGION"
+  value             = var.region
+  protected         = true
+  environment_scope = "*"
+}
+
 resource "gitlab_project_variable" "vpc_connector" {
   project           = var.gitlab_project_id
   key               = "VPC_CONNECTOR"
