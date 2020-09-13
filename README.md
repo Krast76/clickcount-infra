@@ -50,6 +50,7 @@ gitlab_project_id = 001
 ### Deploy
 
 ```bash
+export GOOGLE_CREDENTIALS=$PATH_TO_YOUR_KEY
 cd terraform
 terraform init
 terraform apply 
