@@ -8,9 +8,11 @@ This project will set a few things :
 * Enable and create all required services on GCP to host clickcount APP
 * Cloud RUN services are not deployed here, clickcount repos handle deployment to Cloud RUN itself
 
+## Schema
+
+![](./schema/infra-schema.png)
+
 ## Requirements
-
-
 
 ### Google Service Account
 
@@ -109,3 +111,4 @@ $ terraform destroy
 * Trigger Terraform deployment from clickcount repos to have a fully automatized deployment. Thas could be done with [pipeline trigger](https://docs.gitlab.com/ce/ci/triggers/)
 * Use Cloud Function and Pub-Sub to trigger event from GCR and automatically update Cloud RUN services' image tag
 * Currently the deployment follows the "Blue/Green" pattern, because when a new image is built all traffic is redirected to it. Cloud RUN allows Canary Release deployment pattern. So with cloud run we could redirect 50% to the new image and 50% to the old image
+* Better IAM management
