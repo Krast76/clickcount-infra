@@ -1,23 +1,30 @@
-resource "gitlab_project_variable" "registry-url" {
+resource "gitlab_project_variable" "project" {
   project           = var.gitlab_project_id
-  key               = "REGISTRY_URL"
-  value             = data.google_container_registry_repository.registry.repository_url
+  key               = "PROJECT"
+  value             = var.project
+  protected         = true
+  environment_scope = "*"
+}
+resource "gitlab_project_variable" "vpc_connector" {
+  project           = var.gitlab_project_id
+  key               = "VPC_CONNECTOR"
+  value             = google_vpc_access_connector.connector.id
   protected         = true
   environment_scope = "*"
 }
 
-resource "gitlab_project_variable" "image-name" {
+resource "gitlab_project_variable" "cache_prod" {
   project           = var.gitlab_project_id
-  key               = "IMAGE_NAME"
-  value             = "clickcount"
+  key               = "CACHE_PROD_ADDR"
+  value             = google_redis_instance.cache_prod.host
   protected         = true
   environment_scope = "*"
 }
 
-resource "gitlab_project_variable" "gcp-creds" {
+resource "gitlab_project_variable" "cache_staging" {
   project           = var.gitlab_project_id
-  key               = "GOOGLE_CREDS"
-  value             = base64decode(google_service_account_key.gcr-push-key.private_key)
+  key               = "CACHE_STAGING_ADDR"
+  value             = google_redis_instance.cache_staging.host
   protected         = true
   environment_scope = "*"
 }
