@@ -107,5 +107,5 @@ $ terraform destroy
 
 * Use GCP [NEG](https://cloud.google.com/load-balancing/docs/negs/setting-up-serverless-negs) or [Domain mapping](https://cloud.google.com/run/docs/mapping-custom-domains) to have a clean APP url
 * Trigger Terraform deployment from clickcount repos to have a fully automatized deployment. Thas could be done with [pipeline trigger](https://docs.gitlab.com/ce/ci/triggers/)
-* Use Cloud Function and Pub-Sub to trigger event from GCR and automaticaly update Cloud RUN services' image tag
-* Currently the deployment follow the "Blue/Green" pattern, because when a new image is built all traffic is redirected to it. Cloud RUN allows Canary Release and with cloud run we are able to redirect 50% to the new image and 50% to the old image
+* Use Cloud Function and Pub-Sub to trigger event from GCR and automatically update Cloud RUN services' image tag
+* Currently the deployment follows the "Blue/Green" pattern, because when a new image is built all traffic is redirected to it. Cloud RUN allows Canary Release deployment pattern. So with cloud run we could redirect 50% to the new image and 50% to the old image
