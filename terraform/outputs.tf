@@ -5,3 +5,11 @@ output "registry" {
 output "connection_uri" {
   value = google_vpc_access_connector.connector.id
 }
+
+output "cache_staging_addr" {
+  value = google_redis_instance.cache_staging.host
+}
+
+output "cache_prod_addr" {
+  value = google_redis_instance.cache_prod.host
+}

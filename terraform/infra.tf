@@ -27,3 +27,23 @@ resource "google_vpc_access_connector" "connector" {
   ip_cidr_range = var.vpc_connect_cidr_range
   network       = google_compute_network.clickcount_net.name
 }
+
+// Redis Instances
+
+resource "google_redis_instance" "cache_staging" {
+  depends_on = [google_project_service.redis]
+  name = "redis-staging"
+  memory_size_gb = 1
+  labels = {"env" = "staging"}
+
+  authorized_network = google_compute_network.clickcount_net.id
+}
+
+resource "google_redis_instance" "cache_prod" {
+  depends_on = [google_project_service.redis]
+  name = "redis-prod"
+  memory_size_gb = 1
+  labels = {"env" = "prod"}
+
+  authorized_network = google_compute_network.clickcount_net.id
+}
